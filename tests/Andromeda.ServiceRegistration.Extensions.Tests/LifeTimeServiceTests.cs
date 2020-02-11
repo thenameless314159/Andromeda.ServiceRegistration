@@ -24,22 +24,15 @@ namespace Andromeda.ServiceRegistration.Extensions.Tests
         }
 
         [Fact]
-        public async Task StopAsync_ShouldDisposeAsyncServices()
-        {
-            var disposableService = _services.GetRequiredService<SingletonAsyncDisposable>();
-            Assert.False(disposableService.IsDisposed);
-            var lifeTime = GetLifeTimeService();
-            await lifeTime.StopAsync(new CancellationToken(false));
-            Assert.True(disposableService.IsDisposed);
-        }
-
-        [Fact]
         public async Task StopAsync_ShouldDisposeServices()
         {
+            var asyncDisposableService = _services.GetRequiredService<SingletonAsyncDisposable>();
             var disposableService = _services.GetRequiredService<SingletonDisposable>();
+            Assert.False(asyncDisposableService.IsDisposed);
             Assert.False(disposableService.IsDisposed);
             var lifeTime = GetLifeTimeService();
             await lifeTime.StopAsync(new CancellationToken(false));
+            Assert.True(asyncDisposableService.IsDisposed);
             Assert.True(disposableService.IsDisposed);
         }
 
