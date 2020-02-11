@@ -26,7 +26,7 @@ Also, a *IHostedService* responsible of setting up the [*IAsyncSetupWithProvider
 
 ## <p align="right">Advanced setup</p>
 
-The second entry point of this application is the [*Configure*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L16) extension method, here is an example :
+The second entry point of this library is the [*Configure*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L16) extension method, here is an example :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
