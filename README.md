@@ -7,7 +7,4 @@ Extension library designed to simplify the dependency registration process withi
 
 ## Getting started
 
- You can either use the default extension method [
-```csharp 
-AddAllServicesFrom(this IServiceCollection services, bool triggersAsyncSetup, params Assembly[] assemblies) 
-```](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L35) on your *IServiceCollection* instance : 
+ You can either use the default extension method [`AddAllServicesFrom(this IServiceCollection services, bool triggersAsyncSetup, params Assembly[] assemblies)`](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L35) on your *IServiceCollection* instance : 
