@@ -10,6 +10,11 @@
     <PackageIcon>andromeda_icon1_small.png</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon></ApplicationIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/thenameless314159/Andromeda.ServiceRegistration</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/thenameless314159/Andromeda.ServiceRegistration</RepositoryUrl>
+    <RepositoryType>C#</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +29,10 @@
 
   <ItemGroup>
     <None Include="..\..\andromeda_icon1_small.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

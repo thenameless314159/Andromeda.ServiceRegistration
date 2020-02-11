@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,10 +8,20 @@
     <PackageIconUrl />
     <ApplicationIcon></ApplicationIcon>
     <Win32Resource />
+    <PackageProjectUrl>https://github.com/thenameless314159/Andromeda.ServiceRegistration</PackageProjectUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/thenameless314159/Andromeda.ServiceRegistration</RepositoryUrl>
+    <RepositoryType>C#</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\andromeda_icon1_small.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
