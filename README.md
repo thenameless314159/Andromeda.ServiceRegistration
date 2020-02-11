@@ -5,7 +5,7 @@
 Extension library designed to simplify the dependency registration process within the *`Microsoft.Extensions.DependencyInjection`* base APIs.
 
 
-## Getting started
+## <p align="right ">Getting started</p>
 
  There are 2 extension methods as an entry point for this library, the first on which we'll talk about in this section is [`AddAllServicesFrom`](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L35) : 
 
@@ -24,7 +24,7 @@ This method will register every class that implements one of the [**5 services i
  
 Also, a *IHostedService* responsible of setting up the [*IAsyncSetupWithProvider*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Abstractions/IAsyncSetup.cs) and [*IAsyncSetup*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Abstractions/IAsyncSetup.cs) services is automatically registered, therefore if you need thoses registered services setting up before that your own *IHostedService* starts you'll have to call this method before your own service registration. You can disable this feature by setting the '*triggersAsyncSetup*' arg to false. Plus if any [*IAsyncSetupWithProvider*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Abstractions/IAsyncSetup.cs), [*IAsyncSetup*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Abstractions/IAsyncSetup.cs) or [*ISingleton*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Abstractions/ISingleton.cs) also implement either the *IAsyncDisposable* or *IDisposable* interface, the registered hosted service  will also handle their disposal.
 
-## Advanced setup
+## <p align="right">Advanced setup</p>
 
 The second entry point of this application is the [*Configure*](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L16) extension method, here is an example :
 
