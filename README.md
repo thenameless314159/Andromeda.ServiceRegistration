@@ -35,23 +35,20 @@ public void ConfigureServices(IServiceCollection services)
             {
                 opt.ConfigureAsyncSetupWithProvider<IDataRepository, DataRepository>();
                 opt.ConfigureAsyncSetup<DataFromJsonRepository>();
+		opt.ExecuteAsyncSetupServicesFirst();
 
                 if(_environment.IsDevelopment()) opt
                     .FireAndForgetAsyncSetupServices()
                     .ConfigureRegistrationOptions(
                         x => { x.RegisterSingletonServices = true; 
                                x.RegisterScopedServices = true; });
-
                 else opt.RegisterAllServices();
 
                 opt.UseServiceAssemblies(
                     Assembly.GetEntryAssembly(), 
                     typeof(DataFromJsonRepository).Assembly);
-
-                opt.ExecuteAsyncSetupServicesFirst();
             });
 }
-
 ```
 
 If you need anymore infos about the configure logic, you can check the relative sources on this repository.
