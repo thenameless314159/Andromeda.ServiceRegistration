@@ -5,7 +5,7 @@
 Extension library designed to simplify the dependency registration process within the *`Microsoft.Extensions.DependencyInjection`* base APIs.
 
 
-## <p align="right ">Getting started</p>
+## Getting started
 
  There are 2 extension methods as an entry point for this library, the first on which we'll talk about in this section is [`AddAllServicesFrom`](https://github.com/thenameless314159/Andromeda.ServiceRegistration/blob/master/src/Andromeda.ServiceRegistration.Extensions/ServiceRegistrationExtensions.cs#L35) : 
 
