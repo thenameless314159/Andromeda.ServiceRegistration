@@ -17,6 +17,17 @@ namespace Andromeda.ServiceRegistration.Extensions
         {
             _provider = provider; 
             _options = options;
+
+            if (LifetimeHostedServiceTypes.Count < 1) return;
+            var hostLifetime = provider.GetService<IHostApplicationLifetime>();
+            if (hostLifetime == default) return;
+
+            foreach (var lifetimeService in LifetimeHostedServiceTypes)
+            {
+                var service = (ILifetimeHostedService) provider.GetService(lifetimeService);
+                hostLifetime.ApplicationStopped.Register(service.Dispose);
+                hostLifetime.ApplicationStarted.Register(service.Start);
+            }
         }
 
         public Task StartAsync(CancellationToken token)

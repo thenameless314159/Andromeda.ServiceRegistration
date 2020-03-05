@@ -10,6 +10,7 @@ using Xunit;
 namespace Andromeda.ServiceRegistration.Extensions.Tests
 {
     internal class AsyncSetupWithProvider : IAsyncSetupWithProvider { public ValueTask Setup(IServiceProvider provider) => default; }
+    internal class LifeTimeHosted : ILifetimeHostedService { public void Start() { } public void Dispose() { } }
     internal class AsyncSetup : IAsyncSetup { public ValueTask Setup() => default; }
     internal class Singleton : ISingleton { public bool Value => true; }
     internal class Transient : ITransient { }
@@ -29,6 +30,15 @@ namespace Andromeda.ServiceRegistration.Extensions.Tests
             Assert.NotNull(service);
         }
 
+        [Fact]
+        public void GetService_ILifeTimeHostedService_ShouldBeRegistered()
+        {
+            var serviceType = LifetimeHostedServiceTypes.FirstOrDefault(t => t == typeof(LifeTimeHosted));
+            Assert.NotNull(serviceType);
+            var service = (ILifetimeHostedService)_services.GetService(serviceType);
+            Assert.NotNull(service);
+        }
+        
         [Fact]
         public void GetService_IAsyncSetup_ShouldBeRegistered()
         {

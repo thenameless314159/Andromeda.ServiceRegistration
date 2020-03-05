@@ -17,6 +17,7 @@ namespace Andromeda.ServiceRegistration.Extensions
         internal ServiceRegistrationOptions _registrationOptions = new ServiceRegistrationOptions();
         internal AsyncSetupServicesOptions _asyncSetupOptions = new AsyncSetupServicesOptions();
         internal ICollection<Assembly> _servicesAssemblies = new List<Assembly>();
+
         internal ServiceRegistrationOptionsBuilder()
         {
         }
@@ -136,6 +137,7 @@ namespace Andromeda.ServiceRegistration.Extensions
         public ServiceRegistrationOptionsBuilder RegisterAllServices()
         {
             _registrationOptions.RegisterAsyncSetupWithProviderServices = true;
+            _registrationOptions.RegisterLifetimeHostedServices = true;
             _registrationOptions.RegisterAsyncSetupServices = true;
             _registrationOptions.RegisterSingletonServices = true;
             _registrationOptions.RegisterTransientServices = true;
@@ -145,55 +147,18 @@ namespace Andromeda.ServiceRegistration.Extensions
 
         internal IServiceCollection RegisterAllDependencies(IServiceCollection services)
         {
-            if (_registrationOptions.RegisterAsyncSetupWithProviderServices)
-            {
-                var serviceTypes = from assembly in _servicesAssemblies
-                    from type in assembly.GetTypes()
-                    where !type.IsAbstract && type.IsClass && type.GetInterfaces()
-                              .Contains(typeof(IAsyncSetupWithProvider)) select type;
-
-                services.AddAsyncSetupWithProviderServices(serviceTypes.ToArray());
-            }
-            if (_registrationOptions.RegisterAsyncSetupServices)
-            {
-                var serviceTypes = from assembly in _servicesAssemblies
-                    from type in assembly.GetTypes()
-                    where !type.IsAbstract && type.IsClass && type.GetInterfaces()
-                              .Contains(typeof(IAsyncSetup))
-                    select type;
-
-                services.AddAsyncSetupServices(serviceTypes.ToArray());
-            }
-            if (_registrationOptions.RegisterSingletonServices)
-            {
-                var serviceTypes = from assembly in _servicesAssemblies
-                    from type in assembly.GetTypes()
-                    where !type.IsAbstract && type.IsClass && type.GetInterfaces()
-                              .Contains(typeof(ISingleton))
-                    select type;
-
-                services.AddSingletonServices(serviceTypes.ToArray());
-            }
-            if (_registrationOptions.RegisterTransientServices)
-            {
-                var serviceTypes = from assembly in _servicesAssemblies
-                    from type in assembly.GetTypes()
-                    where !type.IsAbstract && type.IsClass && type.GetInterfaces()
-                              .Contains(typeof(ITransient))
-                    select type;
-
-                services.AddTransientServices(serviceTypes.ToArray());
-            }
-            if (_registrationOptions.RegisterTransientServices)
-            {
-                var serviceTypes = from assembly in _servicesAssemblies
-                    from type in assembly.GetTypes()
-                    where !type.IsAbstract && type.IsClass && type.GetInterfaces()
-                              .Contains(typeof(IScoped))
-                    select type;
-
-                services.AddScopedServices(serviceTypes.ToArray());
-            }
+            if (_registrationOptions.RegisterAsyncSetupWithProviderServices) services.AddAsyncSetupWithProviderServices(
+                _servicesAssemblies.GetAll(typeof(IAsyncSetupWithProvider)).ToArray());
+            if (_registrationOptions.RegisterLifetimeHostedServices) services.AddLifetimeHostedServices(
+                _servicesAssemblies.GetAll(typeof(ILifetimeHostedService)).ToArray());
+            if (_registrationOptions.RegisterAsyncSetupServices) services.AddAsyncSetupServices(
+                _servicesAssemblies.GetAll(typeof(IAsyncSetup)).ToArray());
+            if (_registrationOptions.RegisterSingletonServices) services.AddSingletonServices(
+                _servicesAssemblies.GetAll(typeof(ISingleton)).ToArray());
+            if (_registrationOptions.RegisterTransientServices) services.AddTransientServices(
+                _servicesAssemblies.GetAll(typeof(ITransient)).ToArray());
+            if (_registrationOptions.RegisterScopedServices) services.AddScopedServices(
+                _servicesAssemblies.GetAll(typeof(IScoped)).ToArray());
 
             services.TryAdd(_asyncSetupsToRegister);
             return services.AddHostedService(sp =>
