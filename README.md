@@ -17,7 +17,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ```
 
-This method will register every class that implements one of the [**5 services interfaces**](https://github.com/thenameless314159/Andromeda.ServiceRegistration/tree/master/src/Andromeda.ServiceRegistration.Abstractions)
+This method will register every class that implements one of the [**6 services interfaces**](https://github.com/thenameless314159/Andromeda.ServiceRegistration/tree/master/src/Andromeda.ServiceRegistration.Abstractions)
  into the *IServiceCollection*. These interfaces can be implementend by a concrete type **directly** (they'll be registered with their concrete type into the DI container) or **by an interface** that is then implemented by the concrete type (which will register them by their own interface type into the DI container).
 
 
